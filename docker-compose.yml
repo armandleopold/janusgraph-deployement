@@ -1,14 +1,7 @@
 version: '3'
 services:
 
-  portainer:
-    image: portainer/portainer
-    ports:
-      - "9000:9000"
-    volumes:
-      - "./portData:/data"
-      - "/var/run/docker.sock:/var/run/docker.sock"
-
+################# DATABASES #################
   cassandra:
     image: cassandra:2.1
     ports:
@@ -43,11 +36,27 @@ services:
       - "./janusConf:/opt/local/janusgraph/conf"
       - "/var/log/janusgraph:/var/log/janusgraph"
 
+################# VISUALIZATION #################
   graphexp:
     image: joov/graphexp:0.1.1
     build:
-      context: ./graphexp
+      context: ./graphexpDocker
     ports:
       - "8183:80"
     depends_on:
       - janusgraph
+    volumes:
+      - "./graphexp:/usr/share/nginx/html"
+
+  portainer:
+    image: portainer/portainer
+    ports:
+      - "9000:9000"
+    volumes:
+      - "./portData:/data"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:6.2.4
+    ports:
+      - "5601:5601"
