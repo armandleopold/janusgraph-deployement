@@ -3,6 +3,7 @@
 This is a dockerized environment For [JanusGraph + ElasticSearch + Cassandra + GraphExp] 
 What you will get : 
 * Elasticsearch : 6.2.4
+* Kibana : 6.2.4
 * JanusGraph : 0.2.0
 * Cassandra : 2.1
 * portainer : latest
@@ -37,4 +38,5 @@ As you can see there is an apache-tinkerpop client in the project folder, it has
 4. Now you can run commands with your console in remote to the janusgraph container !
 
 ### To visualize your Work :
-This part is in progress as the graphExp project is currently not running for janusgraph but is still added to the project because it's promising. Please feel free to give me updates if you find a way to visualize **on a web-browser**  janusgraph's content.
+This part is in progress as the graphExp project is currently in progress and need to mature.
+Still it is a simple lighweight solution for visualizing janusgraph content in a browser Using D3.js graphic library.
