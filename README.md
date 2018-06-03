@@ -22,9 +22,19 @@ run : `sysctl -w vm.max_map_count=262144` (to know more about it : [Virtual memo
 4. You will need to restart the [janusgraph] container because it search at the startup to connect immediately to cassandra, which is not yet running at the startup of your stack. **Note : you will have to do this each time you restart your entire stack**
 5. You are good to go !
 
-If you want to have information to your elasticsearch database content, please download [elastic-head plugin](https://chrome.google.com/webstore/detail/elasticsearch-head/ffmkiejjmecolpfloofpjologoblkegm)
+If you want to have information to your elasticsearch database content, please download [elastic-head plugin](https://chrome.google.com/webstore/detail/elasticsearch-head/ffmkiejjmecolpfloofpjologoblkegm) and connect to http://localhost:9200
 ### Connect remotely to your JanusGraph container & run commands:
-As you can see there is a apache-tinkerpop client in the project folder, it has the right version to connect to janusgraph and therefore can be used as a remote gremlin-client for the gremlin-server embedded in JanusGraph.
-To connect to it you will have to edit the 
+As you can see there is an apache-tinkerpop client in the project folder, it has the right version to connect to janusgraph and therefore can be used as a remote gremlin-client for the gremlin-server embedded in JanusGraph.
+1. To connect to it you will have to edit the file :
+`vim apache-tinkerpop/conf/remote.yaml`    
+ In the **hosts:[localhost]** please **replace** the localhost by the ip of the janusgraph container (you can find it using portainer > go to the network of your stack > get the ip of the [janusgraph] container)
+ 2. Run a terminal & execute the bash script on :
+ `bash apache-tinkerpop/bin/gremlin.sh`
+2. You need to connect to the gremlin-server on the janusgraph container with this command : 
+`:remote connect tinkerpop.server conf/remote.yaml session`
+3. You need to specify that you want to execute **remote** commands : 
+`:remote console`
+4. Now you can run commands with your console in remote to the janusgraph container !
 
-> C
+### To visualize your Work :
+This part is in progress as the graphExp project is currently not running for janusgraph but is still added to the project because it's promising. Please feel free to give me updates if you find a way to visualize **on a web-browser**  janusgraph's content.
