@@ -40,3 +40,4 @@ As you can see there is an apache-tinkerpop client in the project folder, it has
 ### To visualize your Work :
 This part is in progress as the graphExp project is currently in progress and need to mature.
 Still it is a simple lighweight solution for visualizing janusgraph content in a browser Using D3.js graphic library.
+just go to : http://localhost:8183 to access graphExp
