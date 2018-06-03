@@ -1,0 +1,3 @@
+org.apache.tinkerpop.gremlin.console.groovy.plugin.DriverGremlinPlugin
+org.apache.tinkerpop.gremlin.console.groovy.plugin.UtilitiesGremlinPlugin
+org.apache.tinkerpop.gremlin.tinkergraph.groovy.plugin.TinkerGraphGremlinPlugin

@@ -1,0 +1,53 @@
+version: '3'
+services:
+
+  portainer:
+    image: portainer/portainer
+    ports:
+      - "9000:9000"
+    volumes:
+      - "./portData:/data"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+
+  cassandra:
+    image: cassandra:2.1
+    ports:
+      - "7000:7000"
+      - "9042:9042"
+      - "9160:9160"
+    volumes:
+      - "./dataCassandra:/var/lib/cassandra"
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.2.4
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "http.host=0.0.0.0"
+      - "transport.host=127.0.0.1"
+    ports:
+      - "9200:9200"
+    volumes:
+      - "./dataES:/usr/share/elasticsearch/data"
+      - "./elasticConf/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
+
+  janusgraph:
+    image: takaomag/janusgraph
+    container_name: janusgraph
+    ports:
+      - "8182:8182"
+    depends_on:
+      - "elasticsearch"
+      - "cassandra"
+    command: ["./bin/gremlin-server.sh", "./conf/gremlin-server/gremlin-server-berkeleyje.yaml"]
+    volumes:
+      - "./janusConf:/opt/local/janusgraph/conf"
+      - "/var/log/janusgraph:/var/log/janusgraph"
+
+  graphexp:
+    image: joov/graphexp:0.1.1
+    build:
+      context: ./graphexp
+    ports:
+      - "8183:80"
+    depends_on:
+      - janusgraph
