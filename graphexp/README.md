@@ -6,7 +6,6 @@ Graphexp is under the Apache 2.0 license.
 
 ![graphexp](https://github.com/bricaud/graphexp/blob/master/images/graphexp2018.png "Graph exploration")
 
-
 ## Configuration
 
 To use Graph Explorer, you need a [Gremlin server](http://tinkerpop.apache.org/) running with REST or websocket protocol and a *recent* web browser to display the visualization.
