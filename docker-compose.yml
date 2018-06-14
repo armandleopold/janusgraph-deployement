@@ -1,62 +1,76 @@
 version: '3'
 services:
 
-################# DATABASES #################
+  portainer:
+    image: portainer/portainer
+    container_name: portainer
+    ports:
+      - "9000:9000"
+    volumes:
+      - "./portData:/data"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    networks:
+      - janusgraphNet
+
+  janusgraph:
+    image: aleopold/docker-janusgraph:latest
+    container_name: janusgraph
+    ports:
+      - "8182:8182"
+    volumes:
+      - "./janusConf:/janusgraph-0.2.0-hadoop2/conf"
+    networks:
+      - janusgraphNet
+
+  graphexp:
+    image: joov/graphexp:0.1.1
+    container_name: graphexp
+    build:
+      context: ./graphexpDocker
+    ports:
+      - "8183:80"
+    volumes:
+      - "./graphexp:/usr/share/nginx/html"
+    networks:
+      - janusgraphNet
+  
+  kibana:
+    image: docker.elastic.co/kibana/kibana:6.2.4
+    container_name: kibana
+    ports:
+      - "5601:5601"
+    networks:
+      - janusgraphNet
+  
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.2.4
+    container_name: elasticsearch
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "http.host=0.0.0.0"
+      - "transport.host=127.0.0.1"chro
+    ports:
+      - "9200:9200"
+    volumes:
+      - "./dataES:/usr/share/elasticsearch/data"
+      - "./elasticConf/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
+    networks:
+      - janusgraphNet
+  
   cassandra:
-    image: cassandra:2.1
+    image: cassandra:3.11
+    container_name: cassandra
+    environment:
+      - CASSANDRA_START_RPC=true
     ports:
       - "7000:7000"
       - "9042:9042"
       - "9160:9160"
     volumes:
       - "./dataCassandra:/var/lib/cassandra"
+    networks:
+      - janusgraphNet
 
-  elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:6.2.4
-    environment:
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-      - "http.host=0.0.0.0"
-      - "transport.host=127.0.0.1"
-    ports:
-      - "9200:9200"
-    volumes:
-      - "./dataES:/usr/share/elasticsearch/data"
-      - "./elasticConf/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
-
-  janusgraph:
-    image: takaomag/janusgraph
-    container_name: janusgraph
-    ports:
-      - "8182:8182"
-    depends_on:
-      - "elasticsearch"
-      - "cassandra"
-    command: ["./bin/gremlin-server.sh", "./conf/gremlin-server/gremlin-server-berkeleyje.yaml"]
-    volumes:
-      - "./janusConf:/opt/local/janusgraph/conf"
-      - "/var/log/janusgraph:/var/log/janusgraph"
-
-################# VISUALIZATION #################
-  graphexp:
-    image: joov/graphexp:0.1.1
-    build:
-      context: ./graphexpDocker
-    ports:
-      - "8183:80"
-    depends_on:
-      - janusgraph
-    volumes:
-      - "./graphexp:/usr/share/nginx/html"
-
-  portainer:
-    image: portainer/portainer
-    ports:
-      - "9000:9000"
-    volumes:
-      - "./portData:/data"
-      - "/var/run/docker.sock:/var/run/docker.sock"
-
-  kibana:
-    image: docker.elastic.co/kibana/kibana:6.2.4
-    ports:
-      - "5601:5601"
+networks:
+  janusgraphNet:
+    driver: bridge
