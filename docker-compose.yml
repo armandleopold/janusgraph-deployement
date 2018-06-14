@@ -23,7 +23,7 @@ services:
       - janusgraphNet
 
   graphexp:
-    image: joov/graphexp:0.1.1
+    image: aleopold/docker-graphexp:latest
     container_name: graphexp
     build:
       context: ./graphexpDocker
