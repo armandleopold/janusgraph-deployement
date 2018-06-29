@@ -2,10 +2,10 @@
 # janusGraphEnv
 This is a dockerized environment For [JanusGraph + ElasticSearch + Cassandra + GraphExp] 
 What you will get : 
-* Elasticsearch : 6.2.4
-* Kibana : 6.2.4
+* Elasticsearch : 6.3.0
+* Kibana : 6.3.0
 * JanusGraph : 0.2.0
-* Cassandra : 2.1
+* Cassandra : 3.11
 * portainer : latest
 * graphexp : latest
 
