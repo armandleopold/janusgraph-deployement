@@ -2,7 +2,7 @@ version: '3'
 services:
 
   portainer:
-    image: portainer/portainer
+    image: portainer/portainer:latest
     container_name: portainer
     ports:
       - "9000:9000"
@@ -10,7 +10,7 @@ services:
       - "./portData:/data"
       - "/var/run/docker.sock:/var/run/docker.sock"
     networks:
-      - janusgraphNet
+      - janusGraphEnvNetwork
 
   janusgraph:
     image: aleopold/docker-janusgraph:latest
@@ -20,7 +20,7 @@ services:
     volumes:
       - "./janusConf:/janusgraph-0.2.0-hadoop2/conf"
     networks:
-      - janusgraphNet
+      - janusGraphEnvNetwork
 
   graphexp:
     image: aleopold/docker-graphexp:latest
@@ -30,18 +30,18 @@ services:
     volumes:
       - "./graphexp:/usr/share/nginx/html"
     networks:
-      - janusgraphNet
+      - janusGraphEnvNetwork
   
   kibana:
-    image: docker.elastic.co/kibana/kibana:6.3.0
+    image: docker.elastic.co/kibana/kibana:6.3.2
     container_name: kibana
     ports:
       - "5601:5601"
     networks:
-      - janusgraphNet
+      - janusGraphEnvNetwork
   
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:6.3.0
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.3.2
     container_name: elasticsearch
     environment:
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
@@ -53,10 +53,10 @@ services:
       - "./dataES:/usr/share/elasticsearch/data"
       - "./elasticConf/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
     networks:
-      - janusgraphNet
+      - janusGraphEnvNetwork
   
   cassandra:
-    image: cassandra:3.11
+    image: cassandra:latest
     container_name: cassandra
     environment:
       - CASSANDRA_START_RPC=true
@@ -67,8 +67,8 @@ services:
     volumes:
       - "./dataCassandra:/var/lib/cassandra"
     networks:
-      - janusgraphNet
+      - janusGraphEnvNetwork
 
 networks:
-  janusgraphNet:
+  janusGraphEnvNetwork:
     driver: bridge

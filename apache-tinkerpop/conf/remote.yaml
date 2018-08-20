@@ -27,6 +27,6 @@
 # - gremlin-server-modern-readonly.yaml
 ##############################################################
 
-hosts: [172.19.0.6]
+hosts: [172.22.0.6]
 port: 8182
 serializer: { className: org.apache.tinkerpop.gremlin.driver.ser.GryoMessageSerializerV1d0, config: { serializeResultToString: true }}
