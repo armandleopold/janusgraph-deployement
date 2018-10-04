@@ -3,8 +3,8 @@
 This is a dockerized environment For [JanusGraph + ElasticSearch + Cassandra + GraphExp] 
 What you will get : 
 
-* Elasticsearch : 6.3.2  [http://localhost:9200](http://localhost:9200)
-* Kibana : 6.3.2    [http://localhost:5601](http://localhost:5601)
+* Elasticsearch : 6.4.2  [http://localhost:9200](http://localhost:9200)
+* Kibana : 6.4.2    [http://localhost:5601](http://localhost:5601)
 * JanusGraph : 0.2.0
 * Cassandra : latest
 * portainer : latest  [http://localhost:9000](http://localhost:9000) 
