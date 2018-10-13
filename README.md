@@ -5,7 +5,7 @@ What you will get :
 
 * Elasticsearch : 6.4.2  [http://localhost:9200](http://localhost:9200)
 * Kibana : 6.4.2    [http://localhost:5601](http://localhost:5601)
-* JanusGraph : 0.2.0
+* JanusGraph : 0.3.1
 * Cassandra : latest
 * portainer : latest  [http://localhost:9000](http://localhost:9000) 
 * graphexp : latest   [http://localhost:8183](http://localhost:8183)

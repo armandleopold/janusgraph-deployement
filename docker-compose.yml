@@ -18,7 +18,7 @@ services:
     ports:
       - "8182:8182"
     volumes:
-      - "./janusConf:/janusgraph-0.2.0-hadoop2/conf"
+      - "./janusConf:/janusgraph-0.3.1-hadoop2/conf"
     networks:
       - janusGraphEnvNetwork
 
