@@ -9,6 +9,7 @@ What you will get :
 * Cassandra : latest
 * portainer : latest  [http://localhost:9000](http://localhost:9000) 
 * graphexp : latest   [http://localhost:8183](http://localhost:8183)
+* landing page :   [http://localhost:8081](http://localhost:8081)
 
 ## Getting Started : 
 To run the stack you need to set the correct permissions to edit the data folders.
