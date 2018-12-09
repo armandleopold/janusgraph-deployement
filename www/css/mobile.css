@@ -1,0 +1,46 @@
+@media (max-width: 832px) {
+
+    #head-title {
+        color: white;
+        padding: 0px;
+        padding-top: 17px;
+        padding-bottom: 36%;
+    }
+
+    #head-title #title {
+        font-size: 2rem;
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+
+    #head-title #subtitle {
+        font-size: 1.5rem;
+        padding: 4px;
+        z-index: 2;
+        line-height: 3rem;
+    }
+
+    #angle {
+        padding: 0px;
+        margin-top: 150px;
+    }
+
+    #block {
+        margin-top: 160px;
+        padding: 10px;
+    }
+
+    footer {
+        padding: 5px;
+        padding-top: 0px;
+    }
+
+    #block2 {
+        height: 334px;
+    }  
+
+    .arrow {
+        top:58%;
+    }
+}

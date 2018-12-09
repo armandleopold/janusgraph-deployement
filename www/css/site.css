@@ -1,0 +1,63 @@
+@font-face {
+	font-family: quicksand;
+	src:url("../fonts/Quicksand_Bold.otf");
+}
+
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
+
+@font-face {
+	font-family: roboto-light;
+	src:url("../fonts/Roboto-Light.ttf");
+}
+
+@font-face {
+    font-family: roboto-regular;
+    src:url("../fonts/Roboto-Regular.ttf");
+}
+
+@font-face {
+    font-family: roboto-bold;
+    src:url("../fonts/Roboto-Bold.ttf");
+}
+
+@font-face {
+    font-family: madeleina;
+    src:url("../fonts/Madeleina Sans.otf");
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    background-color: black;
+}
+
+h1 {
+    font-family: roboto-bold;
+    color: white ;
+    font-size: 75px;
+    text-shadow: 3px 3px black; 
+}
+
+h2 {
+    font-family: roboto-bold;
+    color: white ;
+    font-size: 45px;
+    text-shadow: 3px 3px black; 
+}
+
+.button {
+    background-color: white;
+    padding: 15px;
+    display: block;
+    margin: 5px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.button:hover {
+    text-decoration-line: none;
+
+}
