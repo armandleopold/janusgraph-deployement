@@ -28,7 +28,7 @@ services:
       - janusGraphEnvNetwork
 
   graphexp:
-    image: aleopold/docker-graphexp:0.8.1.2
+    image: aleopold/docker-graphexp:0.8.2
     container_name: graphexp
     depends_on:
       - janusgraph
