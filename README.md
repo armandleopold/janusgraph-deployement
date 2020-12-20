@@ -5,7 +5,7 @@ What you will get :
 
 * Elasticsearch : 7.10.1  [http://localhost:9200](http://localhost:9200)
 * Kibana : 7.10.1    [http://localhost:5601](http://localhost:5601)
-* JanusGraph : 0.3.1
+* JanusGraph : 0.5
 * Cassandra : latest
 * portainer : latest  [http://localhost:9000](http://localhost:9000) 
 * graphexp : latest   [http://localhost:8183](http://localhost:8183)
@@ -35,16 +35,21 @@ Go to : [http://localhost:8081](http://localhost:8081)
 ### Connect remotely to your JanusGraph container & run commands:
 As you can see there is an apache-tinkerpop client in the project folder, it has the right version to connect to janusgraph and therefore can be used as a remote gremlin-client for the gremlin-server embedded in JanusGraph.
 
-1. To connect to it you will have to edit the file :
-`vim apache-tinkerpop/conf/remote.yaml`    
- In the **hosts:[localhost]** please **replace** the localhost by the ip of the janusgraph container (you can find it using portainer > go to the network of your stack > get the ip of the [janusgraph] container)
- 2. Run a terminal & execute the bash script on :
- `bash apache-tinkerpop/bin/gremlin.sh`
+1. Run a terminal & execute the container run command :
+ `docker run --rm -e GREMLIN_REMOTE_HOSTS=janusgraph -it --network=janusgraph-deployement_janusGraphEnvNetwork janusgraph/janusgraph:latest ./bin/gremlin.sh`
+ Be aware that the **network** may be different. use `docker network ls` to find the right docker network to connect to.
 2. You need to connect to the gremlin-server on the janusgraph container with this command : 
-`:remote connect tinkerpop.server conf/remote.yaml session`
+` :remote connect tinkerpop.server conf/remote.yaml`
 3. You need to specify that you want to execute **remote** commands : 
 `:remote console`
 4. Now you can run commands with your console in remote to the janusgraph container !
+5. Exemples : 
+```
+gremlin> g.addV('person').property('name', 'chris')
+==>v[4160]
+gremlin> g.V().values('name')
+==>chris
+```
 
 ### To visualize your Work :
 

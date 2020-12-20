@@ -13,7 +13,7 @@ services:
       - janusGraphEnvNetwork
 
   janusgraph:
-    image: janusgraph/janusgraph:0.3.1
+    image: janusgraph/janusgraph:0.5
     container_name: janusgraph
     environment:
       - JANUS_PROPS_TEMPLATE=cassandra-es
