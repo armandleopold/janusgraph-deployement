@@ -7,37 +7,35 @@ services:
     ports:
       - "9000:9000"
     volumes:
-      - "./portData:/data"
+      - "dataPortainer:/data"
       - "/var/run/docker.sock:/var/run/docker.sock"
     networks:
       - janusGraphEnvNetwork
 
   janusgraph:
-    image: aleopold/docker-janusgraph:latest
+    image: janusgraph/janusgraph:0.3.1
     container_name: janusgraph
     depends_on:
       - cassandra
     ports:
       - "8182:8182"
-    volumes:
-      - "./janusConf:/janusgraph-0.3.1-hadoop2/conf"
+    # volumes:
+    #   - "./janusConf:/janusgraph-0.3.1-hadoop2/conf"
     networks:
       - janusGraphEnvNetwork
 
   graphexp:
-    image: aleopold/docker-graphexp:latest
+    image: aleopold/docker-graphexp:0.8.1.2
     container_name: graphexp
     depends_on:
       - janusgraph
     ports:
       - "8183:80"
-    volumes:
-      - "./graphexp:/usr/share/nginx/html"
     networks:
       - janusGraphEnvNetwork
   
   kibana:
-    image: docker.elastic.co/kibana/kibana:6.5.2
+    image: docker.elastic.co/kibana/kibana:7.10.1
     container_name: kibana
     depends_on:
       - elasticsearch
@@ -47,7 +45,7 @@ services:
       - janusGraphEnvNetwork
   
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:6.5.2
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.1
     container_name: elasticsearch
     environment:
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
@@ -56,7 +54,7 @@ services:
     ports:
       - "9200:9200"
     volumes:
-      - "./dataES:/usr/share/elasticsearch/data"
+      - "dataElasticsearch:/usr/share/elasticsearch/data"
       - "./elasticConf/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
     networks:
       - janusGraphEnvNetwork
@@ -71,7 +69,7 @@ services:
       - "9042:9042"
       - "9160:9160"
     volumes:
-      - "./dataCassandra:/var/lib/cassandra"
+      - "dataCassandra:/var/lib/cassandra"
     networks:
       - janusGraphEnvNetwork
 
