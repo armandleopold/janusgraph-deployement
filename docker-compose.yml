@@ -86,3 +86,8 @@ services:
 networks:
   janusGraphEnvNetwork:
     driver: bridge
+
+volumes:
+  dataPortainer:
+  dataCassandra:
+  dataElasticsearch:
