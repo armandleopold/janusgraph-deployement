@@ -36,12 +36,18 @@ Go to : [http://localhost:8081](http://localhost:8081)
 As you can see there is an apache-tinkerpop client in the project folder, it has the right version to connect to janusgraph and therefore can be used as a remote gremlin-client for the gremlin-server embedded in JanusGraph.
 
 1. Run a terminal & execute the container run command :
- `docker run --rm -e GREMLIN_REMOTE_HOSTS=janusgraph -it --network=janusgraph-deployement_janusGraphEnvNetwork janusgraph/janusgraph:latest ./bin/gremlin.sh`
+```
+docker run --rm -e GREMLIN_REMOTE_HOSTS=janusgraph -it --network=janusgraph-deployement_janusGraphEnvNetwork janusgraph/janusgraph:latest ./bin/gremlin.sh
+```
  Be aware that the **network** may be different. use `docker network ls` to find the right docker network to connect to.
 2. You need to connect to the gremlin-server on the janusgraph container with this command : 
-` :remote connect tinkerpop.server conf/remote.yaml`
+```
+:remote connect tinkerpop.server conf/remote.yaml
+```
 3. You need to specify that you want to execute **remote** commands : 
-`:remote console`
+```
+:remote console
+```
 4. Now you can run commands with your console in remote to the janusgraph container !
 5. Exemples : 
 ```
