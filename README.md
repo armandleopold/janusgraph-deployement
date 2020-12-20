@@ -64,11 +64,8 @@ just go to : [http://localhost:8183](http://localhost:8183) to access graphExp.
 
 If you want to visualize datas by default, you can load the janusGraph god graph by connecting remotely to the gremlin-server of JanusGraph : 
 
-*  `bash apache-tinkerpop/bin/gremlin.sh`
-*  `:remote connect tinkerpop.server conf/remote.yaml session`
-*  `:remote console`
-*  `graph = JanusGraphFactory.open('/janusgraph-0.2.0-hadoop2/conf/gremlin-server/janusgraph-cassandra-es-server.properties')`
-*  `GraphOfTheGodsFactory.load(graph)`
+See the documentation here : 
+[https://docs.janusgraph.org/getting-started/basic-usage/](https://docs.janusgraph.org/getting-started/basic-usage/)
 
 ### To stop properly the stack :
 
