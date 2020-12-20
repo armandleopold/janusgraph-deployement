@@ -20,14 +20,10 @@ To run the stack you need to set the correct permissions to edit the data folder
 run : `sysctl -w vm.max_map_count=262144` (to know more about it : [Virtual memory Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html#vm-max-map-count))
 
 ### Installation :
-1. To setup the permissions run at **the root  folder of the project :  janusGraphEnv/** : 
-`mkdir dataCassandra/ dataES/ portData/`
-`sudo chmod -R 777 dataCassandra/ dataES/ portData/`
-2. Then to build & run the stack : 
+1. To build & run the stack : 
 `docker-compose up`
-3. Go to : [http://localhost:9000](http://localhost:9000) & setup for a **local docker** engine.
-4. You will need to restart the [janusgraph] container because it search at the startup to connect immediately to cassandra, which is not yet running at the startup of your stack. **Note : you will have to do this each time you restart your entire stack**
-5. You are good to go !
+2. Go to : [http://localhost:9000](http://localhost:9000) & setup for a **local docker** engine.
+3. You are good to go !
 
 If you want to have information to your elasticsearch database content, please download [elastic-head plugin](https://chrome.google.com/webstore/detail/elasticsearch-head/ffmkiejjmecolpfloofpjologoblkegm) and connect to http://localhost:9200
 

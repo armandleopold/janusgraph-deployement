@@ -15,12 +15,15 @@ services:
   janusgraph:
     image: janusgraph/janusgraph:0.3.1
     container_name: janusgraph
+    environment:
+      - JANUS_PROPS_TEMPLATE=cassandra-es
     depends_on:
       - cassandra
+      - elasticsearch
     ports:
       - "8182:8182"
-    # volumes:
-    #   - "./janusConf:/janusgraph-0.3.1-hadoop2/conf"
+    volumes:
+     -  "./janusConf:/etc/opt/janusgraph:ro"
     networks:
       - janusGraphEnvNetwork
 
